@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import { marvelApiUrl } from '@/providers/conf'
+import { getSeries } from '@/providers/marvel'
 import SerieSummary from '@/components/SerieSummary.vue'
 import MarvelApiError from '@/components/MarvelApiError.vue'
 
@@ -45,8 +45,7 @@ export default {
       this.errors = null
       this.series = []
       try {
-        const res = await fetch(marvelApiUrl + 'series.json')
-        this.series = await res.json()
+        this.series = await getSeries()
         this.loading = false
       } catch (e) {
         this.loading = false

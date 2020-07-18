@@ -40,7 +40,7 @@
 
 <script>
 
-import { marvelApiUrl } from '@/providers/conf'
+import { getSerie } from '@/providers/marvel'
 /* https://router.vuejs.org/guide/essentials/dynamic-matching.html#reacting-to-params-changes */
 export default {
   name: 'Serie',
@@ -67,13 +67,11 @@ export default {
   },
   methods: {
     async fetchData () {
-      // console.log(this.$route.params.id)
       this.loading = true
       this.errors = null
       this.series = []
       try {
-        const res = await fetch(marvelApiUrl + 'serie.json')
-        this.serie = await res.json()
+        this.serie = await getSerie(this.$route.params.id)
         this.loading = false
       } catch (e) {
         this.loading = false
