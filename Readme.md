@@ -22,6 +22,7 @@ Stack :
 * install [symfony cli](https://get.symfony.com/cli/setup.exe)
 * install [MariaDb](https://downloads.mariadb.org/)
 * execute this command `symfony new server`  in work folder
+* don't use make:entity , doesn't seems to work on windows 10 ( no commands defined in the make namespace )
 
 ### Vue
 
@@ -61,7 +62,7 @@ Add vue extension
 * [ ] Security
   * [ ] user authentication
   * [ ] ensure a user can only update his own reading list
-  * [ ] use symfony as a proxy, injecting the marvel api key 
+  * [x] use symfony as a proxy, injecting the marvel api key 
   * [ ] cache marvel api data https://symfony.com/doc/current/http_client.html#caching-requests-and-responses
 * [ ] Deployment
   * [ ] create remote database with minimal data

@@ -4,8 +4,7 @@ namespace App\Service;
 
 use DateTime;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
- // public key ad0a205e96abfc2940bb9dc1bdf796dd
- //private f8c873e2322d7e9f9415e1d69ed38ecd347ef321
+
 class Marvel
 {
 
@@ -33,7 +32,7 @@ class Marvel
     ]);
     
     $content = $response->getContent();
-    return json_decode($content);
+    return $content;
   }
 
   public function fetchSeries()
@@ -43,5 +42,10 @@ class Marvel
   public function fetchSerie($id)
   {
     return $this->makeQuery('series/'.$id);
+  }
+  
+  public function fetchCharacter($id)
+  {
+    return $this->makeQuery('character/'.$id);
   }
 }
