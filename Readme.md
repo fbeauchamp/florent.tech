@@ -25,8 +25,9 @@ Stack :
 
 ### Vue
 
-https://router.vuejs.org/guide/essentials/history-mode.html
-vue.js devtools : https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd/related
+[history mode](https://router.vuejs.org/guide/essentials/history-mode.html)
+
+[vue.js devtools](https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd/related)
 
 * install [nodejs / npm](https://nodejs.org/en/)
 * install yarn with the command `npm install -g yarn`
@@ -60,7 +61,8 @@ Add vue extension
 * [ ] Security
   * [ ] user authentication
   * [ ] ensure a user can only update his own reading list
-  * [ ] use symfony as a proxy, injecting the marvel api key
+  * [ ] use symfony as a proxy, injecting the marvel api key 
+  * [ ] cache marvel api data https://symfony.com/doc/current/http_client.html#caching-requests-and-responses
 * [ ] Deployment
   * [ ] create remote database with minimal data
   * [ ] install required components
