@@ -1,8 +1,19 @@
 <template>
-  <div class="series">
-    <h1>List all series</h1>
-    <SerieSummary v-for="serie in series" :key="serie.id" v-bind:serie="serie"></SerieSummary>
-  </div>
+  <section class="series">
+    <h1>Series</h1>
+    <template v-if="loading">
+      Chargement en cours
+    </template>
+    <template v-else>
+      <template v-if="errors">
+        Something's gone wrong during series loading : {{errors}}
+      </template>
+      <template v-else>
+        <small>Results {{series.data.offset+1}} to {{series.data.offset+series.data.count}} </small>
+        <SerieSummary v-for="serie in series.data.results" :key="serie.id" v-bind:serie="serie"></SerieSummary>
+      </template>
+    </template>
+  </section>
 </template>
 
 <script>
@@ -32,9 +43,8 @@ export default {
       this.series = []
       try {
         const res = await fetch(marvelApiUrl + 'series.json')
-        const json = await res.json()
+        this.series = await res.json()
         this.loading = false
-        this.series = json.data.results
       } catch (e) {
         this.loading = false
         this.errors = e.message || e
