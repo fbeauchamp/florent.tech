@@ -45,13 +45,13 @@ Add vue extension
 * [ ] be able to list series from the marvel api
   * [x] create an api key
   * [ ] make a list series api query
-  * [ ] make a series view
+  * [x] make a series view
 * [ ] be able to search series by title from the marvel api
   * [ ] text search
   * [ ] pagination
 * [ ] show a serie detail
-  * [ ] thumbnail
-  * [ ] creators/ characters
+  * [x] thumbnail
+  * [x] characters
   * [ ] comics pagination
 * [ ] mark a comic from a serie as read
   * [x] create database
