@@ -2,27 +2,30 @@
   <section class="series">
     <h1>Series</h1>
     <template v-if="loading">
-      Chargement en cours
+      Loading
     </template>
     <template v-else>
-      <template v-if="errors">
-        Something's gone wrong during series loading : {{errors}}
-      </template>
+      <MarvelApiError v-if="errors">
+        {{errors}}
+      </MarvelApiError>
       <template v-else>
         <small>Results {{series.data.offset+1}} to {{series.data.offset+series.data.count}} </small>
         <SerieSummary v-for="serie in series.data.results" :key="serie.id" v-bind:serie="serie"></SerieSummary>
       </template>
     </template>
+    <footer v-html="series.attributionHTML"/>
   </section>
 </template>
 
 <script>
 import { marvelApiUrl } from '@/providers/conf'
 import SerieSummary from '@/components/SerieSummary.vue'
+import MarvelApiError from '@/components/MarvelApiError.vue'
 
 export default {
   components: {
-    SerieSummary
+    SerieSummary,
+    MarvelApiError
   },
   data () {
     return {
