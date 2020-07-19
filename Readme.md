@@ -44,13 +44,13 @@ Add vue extension
 
 ## target
 
-* [ ] be able to list series from the marvel api
+* [x] be able to list series from the marvel api
   * [x] create an api key
-  * [ ] make a list series api query
+  * [x] make a list series api query
   * [x] make a series view
 * [ ] be able to search series by title from the marvel api
   * [ ] text search
-  * [ ] pagination
+  * [x] pagination
 * [ ] show a serie detail
   * [x] thumbnail
   * [x] characters
@@ -62,8 +62,8 @@ Add vue extension
 * [ ] Security
   * [ ] user authentication
   * [ ] ensure a user can only update his own reading list
-  * [x] use symfony as a proxy, injecting the marvel api key 
-  * [ ] cache marvel api data https://symfony.com/doc/current/http_client.html#caching-requests-and-responses
+  * [x] use symfony as a proxy, injecting the marvel api key
+  * [x] cache marvel api data
 * [ ] Deployment
   * [ ] create remote database with minimal data
   * [ ] install required components

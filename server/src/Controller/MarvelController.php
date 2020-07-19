@@ -3,6 +3,8 @@
  
  use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
  use Symfony\Component\Routing\Annotation\Route;
+ use Symfony\Component\HttpFoundation\Request;
+
 
  use App\Service\Marvel;
 
@@ -11,10 +13,10 @@ class MarvelController extends AbstractController
   /**
    * @Route("/marvel/series", methods={"GET","HEAD"})
    */
-  public function series(Marvel $marvel)
+  public function series(Request $request, Marvel $marvel)
   {
      return $this->json(
-      json_decode($marvel->fetchSeries())
+      json_decode($marvel->fetchSeries($request->query->all()))
      );
    }
    /**

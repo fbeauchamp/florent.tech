@@ -21,7 +21,7 @@ class Marvel
     $this->entityManager = $entityManager;
   }
 
-  private function makeQuery($endpoint, $cacheId=null, $parameters=[])
+  private function makeQuery(string $endpoint, string $cacheId=null,array $parameters=[]):string
   {
     if($cacheId){
       $cachedContent = $this->entityManager
@@ -57,9 +57,9 @@ class Marvel
     return $content;
   }
 
-  public function fetchSeries()
+  public function fetchSeries($parameters=[])
   {
-    return $this->makeQuery('series');
+    return $this->makeQuery('series', null, $parameters);
   }
   public function fetchSerie($id)
   {

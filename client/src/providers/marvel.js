@@ -6,8 +6,10 @@ export async function getSerie (id) {
   return res.json()
 }
 
-export async function getSeries (opts) {
-  const res = await fetch(marvelApiUrl + 'series')
+export async function getSeries (params = {}) {
+  const url = new URL(marvelApiUrl + 'series')
+  Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
+  const res = await fetch(url)
   return res.json()
 }
 
