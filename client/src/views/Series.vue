@@ -86,7 +86,6 @@ export default {
   },
   methods: {
     async fetchData () {
-      console.log('fetch')
       this.loading = true
       this.errors = null
       this.series = []

@@ -31,6 +31,17 @@ class MarvelController extends AbstractController
   }
 
    /**
+    * @Route("/marvel/serie/{id}/comics", methods={"GET","HEAD"})
+    */
+    public function serieComics(Request $request, string $id, Marvel $marvel)
+    {
+      $serie = $marvel->fetchSerieComics($id, $request->query->all());
+      return $this->json(
+        json_decode($serie)
+      );
+    }
+
+   /**
     * @Route("/marvel/character/{id}", methods={"GET","HEAD"})
     */
   public function character(string $id, Marvel $marvel){

@@ -4,7 +4,7 @@
       Loading
     </template>
     <template v-else>
-      <h1>{{ serie.title }}</h1>
+      <h1>{{ serie.data.results[0].title }}</h1>
       <img :src="banner">
       <h2>Characters</h2>
       <div class="characters">
@@ -16,15 +16,7 @@
         />
       </div>
       <h2>Comics</h2>
-      <table>
-        <tbody>
-          <tr  v-for="comic in serie.data.results[0].comics.items" :key="comic.id">
-            <td>
-              {{comic.name}}
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <Comics :serieId="serie.data.results[0].id" ></Comics>
      <footer v-html="serie.attributionHTML"/>
     </template>
   </div>
@@ -42,10 +34,12 @@
 
 import { getSerie } from '@/providers/marvel'
 import CharacterSummary from '@/components/CharacterSummary.vue'
+import Comics from '@/components/Comics.vue'
 export default {
   name: 'Serie',
   components: {
-    CharacterSummary
+    CharacterSummary,
+    Comics
   },
   data () {
     return {

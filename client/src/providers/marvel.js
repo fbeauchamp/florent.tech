@@ -17,3 +17,10 @@ export async function getCharacter (id) {
   const res = await fetch(marvelApiUrl + 'character/' + id)
   return res.json()
 }
+
+export async function getComics (serieId, params) {
+  const url = new URL(marvelApiUrl + 'serie/' + serieId + '/comics')
+  Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
+  const res = await fetch(url)
+  return res.json()
+}

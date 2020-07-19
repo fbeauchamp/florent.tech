@@ -57,16 +57,21 @@ class Marvel
     return $content;
   }
 
-  public function fetchSeries($parameters=[])
+  public function fetchSeries(array $parameters=[])
   {
     return $this->makeQuery('series', null, $parameters);
   }
-  public function fetchSerie($id)
+  public function fetchSerie(string $id)
   {
     return $this->makeQuery('series/'.$id, 'series/'.$id);
   }
+
+  public function fetchSerieComics(string $id,array $parameters)
+  {
+    return $this->makeQuery('series/'.$id.'/comics', null, $parameters);
+  }
   
-  public function fetchCharacter($id)
+  public function fetchCharacter(string $id)
   {
     return $this->makeQuery('characters/'.$id,'character/'.$id);
   }

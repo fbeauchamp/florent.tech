@@ -55,7 +55,7 @@ export default {
       if (this.loading) {
         return null
       }
-      const { url } = this.character.data.results[0]?.urls.find(({ type }) => type === 'wiki')
+      const { url } = this.character.data.results[0]?.urls.find(({ type }) => type === 'wiki') ?? {}
       return url
     }
   },
@@ -71,7 +71,6 @@ export default {
   methods: {
     async fetchData () {
       const id = this.$props.resourceURI?.split('/').pop()
-      console.log(id, this.$props)
       if (!id) {
         this.errors = new Error('No character id')
         return
@@ -81,7 +80,6 @@ export default {
       this.series = []
       try {
         this.character = await getCharacter(id)
-        console.log(this.character)
         this.loading = false
       } catch (e) {
         this.loading = false
