@@ -68,6 +68,6 @@ class Marvel
   
   public function fetchCharacter($id)
   {
-    return $this->makeQuery('character/'.$id,'character/'.$id);
+    return $this->makeQuery('characters/'.$id,'character/'.$id);
   }
 }
