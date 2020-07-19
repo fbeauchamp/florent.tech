@@ -5,7 +5,7 @@
     </template>
     <template v-else>
       <h1>{{ serie.data.results[0].title }}</h1>
-      <img :src="banner">
+      <img :src="banner" style="width:100%">
       <h2>Characters</h2>
       <div class="characters">
         <CharacterSummary

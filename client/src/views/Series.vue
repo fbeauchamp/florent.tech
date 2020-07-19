@@ -21,6 +21,14 @@
         </paginate>
         <small>Results {{(currentPage - 1) * pageSize}} to {{currentPage * pageSize}} (total: {{series.data.total}}) </small>
         <SerieSummary v-for="serie in series.data.results" :key="serie.id" v-bind:serie="serie"></SerieSummary>
+        <paginate
+          v-model="currentPage"
+          :page-count="series.data.count"
+          :prevText="'Prev'"
+          :nextText="'Next'"
+          container-class="pagination"
+          page-class="page-item">
+        </paginate>
       </template>
     </template>
     <footer v-html="series.attributionHTML"/>
@@ -34,14 +42,13 @@
   }
   .pagination > li {
     list-style: none;
-    padding: 0.25em;
+    padding: 0.25em 0.5em;
   }
   .page-item.active {
-    background-color: black;
+    background-color:#1c2833;
     color: white;
   }
   .page-item.disabled {
-    background-color: white;
     color: gray;
   }
 </style>

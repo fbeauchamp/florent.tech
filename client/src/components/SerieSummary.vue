@@ -6,7 +6,7 @@
       <p>
         {{serie.description}}
       </p>
-        <router-link :to="link">Details</router-link>
+        <router-link :to="link" class="link">Details</router-link>
     </div>
   </div>
 </template>
@@ -14,10 +14,20 @@
 <style scoped>
   .container {
     display: flex;
-    flex-direction: row
+    flex-direction: row;
+    margin:1em 0;
   }
   .details{
-    flex:1
+    flex:1;
+    position: relative;
+  }
+  .details:hover{
+    background-color:#1c2833;
+  }
+  .link{
+    position: absolute;
+    right:1em;
+    bottom:1em;
   }
 </style>
 
