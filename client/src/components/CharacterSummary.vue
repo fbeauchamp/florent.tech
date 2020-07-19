@@ -7,7 +7,11 @@
   <div class="container" v-else>
     <img :src="thumbnail">
     <div class="details" >
-      <h3 class="name">{{name}}</h3>
+      <a :href="wiki" v-if="wiki" target="_blank" rel="noopener noreferrer nofollow">
+        <h3 class="name">{{name}}</h3>
+      </a>
+        <h3 class="name" v-else>{{name}}</h3>
+
     </div>
   </div>
 </template>
@@ -46,6 +50,13 @@ export default {
       }
       const { path, extension } = this.character.data.results[0]?.thumbnail
       return path + '/portrait_medium.' + extension
+    },
+    wiki: function () {
+      if (this.loading) {
+        return null
+      }
+      const { url } = this.character.data.results[0]?.urls.find(({ type }) => type === 'wiki')
+      return url
     }
   },
   props: ['resourceURI', 'name'],
