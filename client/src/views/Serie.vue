@@ -8,9 +8,12 @@
       <img :src="banner">
       <h2>Characters</h2>
       <div class="characters">
-        <div class="character"  v-for="character in serie.data.results[0].characters.items" :key="character.id">
-          <h4>{{character.name}}</h4>
-        </div>
+        <CharacterSummary
+          v-for="character in serie.data.results[0].characters.items"
+          :key="character.id"
+          :resourceURI="character.resourceURI"
+          :name="character.name"
+        />
       </div>
       <h2>Comics</h2>
       <table>
@@ -31,19 +34,19 @@
   .characters {
     display: flex;
     flex-direction: row;
-    justify-content: center;
-  }
-  .character {
-    flex: 120 0 0
+    overflow-x: auto;
   }
 </style>
 
 <script>
 
 import { getSerie } from '@/providers/marvel'
-/* https://router.vuejs.org/guide/essentials/dynamic-matching.html#reacting-to-params-changes */
+import CharacterSummary from '@/components/CharacterSummary.vue'
 export default {
   name: 'Serie',
+  components: {
+    CharacterSummary
+  },
   data () {
     return {
       loading: false,
