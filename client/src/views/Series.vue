@@ -1,6 +1,7 @@
 <template>
   <section class="series">
     <h1>Series</h1>
+    <input type="search" v-model="titleStartsWith" key="searchbox">
 
     <template v-if="loading">
       Loading
@@ -13,7 +14,6 @@
         <paginate
           v-model="currentPage"
           :page-count="series.data.count"
-          :click-handler="updatePage"
           :prevText="'Prev'"
           :nextText="'Next'"
           container-class="pagination"
@@ -64,33 +64,46 @@ export default {
       series: [],
       errors: null,
       currentPage: 1,
-      pageSize: 20
+      pageSize: 20,
+      titleStartsWith: ''
     }
   },
+  __debounceInputTimer: null,
   created () {
     this.fetchData()
   },
   watch: {
-    currentPage: 'fetchData' // no need to debounce this
+    currentPage: 'fetchData', // no need to debounce this
+    titleStartsWith: function () { // text search should be debounced
+      if (this.__debounceInputTimer) {
+        clearTimeout(this.__debounceInputTimer)
+      }
+      this.__debounceInputTimer = setTimeout(() => {
+        this.fetchData()
+        this.__debounceInputTimer = null
+      }, 200)
+    }
   },
   methods: {
     async fetchData () {
+      console.log('fetch')
       this.loading = true
       this.errors = null
       this.series = []
       try {
-        this.series = await getSeries({
+        const params = {
           offset: (this.currentPage - 1) * this.pageSize,
           limit: this.pageSize
-        })
+        }
+        if (this.titleStartsWith) {
+          params.titleStartsWith = this.titleStartsWith
+        }
+        this.series = await getSeries(params)
         this.loading = false
       } catch (e) {
         this.loading = false
         this.errors = e.message || e
       }
-    },
-    updatePage (newPageNumber) {
-      this.currentPage = newPageNumber
     }
 
   }
